@@ -65,7 +65,8 @@
     process.stdout.write('Cloning depot tools ... ');
     if(!fs.existsSync(DEPOT_TOOLS_DIR)) {
       var proc = spawn('git',
-        ['-C', LIB_DIR, 'clone', '-v', '--progress', DEPOT_TOOLS_REPO]
+        ['clone', '-v', '--progress', DEPOT_TOOLS_REPO],
+        {pwd: LIB_DIR}
       );
       var log = fs.createWriteStream(PROJECT_DIR+'/build.log', {flags: 'w'});
       proc.stdout.pipe(log);
