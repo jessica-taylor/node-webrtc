@@ -66,7 +66,7 @@
     if(!fs.existsSync(DEPOT_TOOLS_DIR)) {
       var proc = spawn('git',
         ['clone', '-v', '--progress', DEPOT_TOOLS_REPO],
-        {pwd: LIB_DIR}
+        {cwd: LIB_DIR}
       );
       var log = fs.createWriteStream(PROJECT_DIR+'/build.log', {flags: 'w'});
       // proc.stdout.pipe(log);
