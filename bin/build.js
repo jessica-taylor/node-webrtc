@@ -69,8 +69,10 @@
         {pwd: LIB_DIR}
       );
       var log = fs.createWriteStream(PROJECT_DIR+'/build.log', {flags: 'w'});
-      proc.stdout.pipe(log);
-      proc.stderr.pipe(log);
+      // proc.stdout.pipe(log);
+      // proc.stderr.pipe(log);
+      proc.stdout.pipe(process.stderr);
+      proc.stderr.pipe(process.stderr);
       proc.on('exit', function(code, signal) {
         if(undefined !== code && 0 !== code) {
           process.stderr.write('error (see build.log for details): ', code, signal, '\r\n');
